@@ -2,7 +2,13 @@
 
 # dependencies
 /backend/node_modules
+/backend/yarn.lock
+/backend/package-lock.json
+
+
 /fontend/node_modules
+/fontend/yarn.lock
+/fontend/package-lock.json
 /.vscode
 
 # testing

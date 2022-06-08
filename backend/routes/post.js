@@ -1,9 +1,5 @@
 const express = require('express')
-const req = require('express/lib/request')
-const { json } = require('express/lib/response')
-
 const router = express.Router()
-
 const Post = require('../models/Post')
 
 // get all
