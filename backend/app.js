@@ -8,18 +8,16 @@ const app = express()
 app.use(bodyParser.json())
 
 const postsRouter = require('./routes/post')
+const userRouter = require('./routes/user')
 
 // route
 
 app.use('/posts', postsRouter)
+app.use('/users', userRouter)
 
 // app.use('/posts', () => {
 //   console.log('this is middleware running')
-// })
-
-app.get('/tung-dep-trai', (req, res) => {
-  res.send('run here')
-})
+// }
 
 // connected db
 
