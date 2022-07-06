@@ -1,11 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+// import "./App.css";
+// import "./style.css";
 import "./style.scss";
 import img_email from "./img/email.png";
 import img_password from "./img/password.png";
 import { EntryType } from "perf_hooks";
 import { error } from "console";
+// import { error } from "console";
 
 type FormErrorsType = {
   email: string;
@@ -24,27 +26,37 @@ const Login = () => {
 
   const [formRequied, setFormRequied] = useState(false);
 
+  // const [focused, setFocused] = useState(false);
+
+  // const [isSubmit, setIsSubmit] = useState(false);
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+    console.log("e.target", e.target.name);
 
     var errorInput = validate(name, value);
 
     setFormErrors({ ...formErrors, [name]: errorInput });
   };
+  console.log("handle formValue 2", formValues);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    // setFocused(true);
     var errorInput1 = "";
     var errorInput = "";
 
     if (formValues.email === "") {
       errorInput1 = validate("email", formValues.email);
       setFormRequied(!formRequied);
+      // console.log("handleSubmit errorInput ", errorInput);
     }
     if (formValues.password === "") {
       errorInput = validate("password", formValues.password);
       setFormRequied(!formRequied);
+
+      // console.log("handleSubmit errorInput ", errorInput);
     }
 
     var allError = {
@@ -52,13 +64,26 @@ const Login = () => {
       password: errorInput,
     };
     setFormErrors({ ...formErrors, ...allError });
+
+    // setIsSubmit(true);
   };
+  console.log("....formErrors", formErrors);
+
+  // useEffect(() => {
+  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
+  //   }
+  // }, [formErrors]);
 
   const validate = (name: string, value: string): string => {
+    // console.log("values validate ->", values.email);
+    // console.log("formValue ->", formValue);
+    // const errors:s = "";
+    // const regex = /\w+@[a-z]+[.][a-z]*/;
     var errors: string = "";
 
     const regex = /\w+@[a-z]+[.][a-z]*/;
     if (name === "email") {
+      // errors = "Email required!";
       if (!value) {
         errors = "Email required!";
       } else if (!regex.test(value)) {
@@ -73,6 +98,7 @@ const Login = () => {
       }
     }
 
+    console.log("errors=>", errors);
     return errors;
   };
 
@@ -99,6 +125,7 @@ const Login = () => {
             <h1 className="form__title">Welcome back!</h1>
             <div className="form__main">
               <form onSubmit={handleSubmit}>
+                {/* Email */}
                 <div className="main__row">
                   <label className="row__label">Email</label>
                   <input
@@ -110,15 +137,20 @@ const Login = () => {
                     value={formValues.email}
                     onChange={handleChange}
                     required={formRequied}
+                    // onBlur={handleFocus}
+                    // required={true}
+                    // data-focused={focused.toString()}
                   ></input>
                   <div className="row__icon icon ">
                     <img src={img_email} alt="email" />
                   </div>
+                  {/* validate  */}
                   <p className="row--showError">
                     <span>{formErrors.email}</span>
                   </p>
                 </div>
 
+                {/* password */}
                 <div className="main__row">
                   <label className="row__label">Password</label>
                   <input
@@ -130,6 +162,8 @@ const Login = () => {
                     value={formValues.password}
                     onChange={handleChange}
                     required={formRequied}
+
+                    // onBlur={handleFocus}
                   ></input>
                   <div className="row__icon icon ">
                     <img src={img_password} alt="password" />
@@ -140,11 +174,16 @@ const Login = () => {
                   <div className="row__show show">
                     <a id="component-login-forgot" draggable="false">
                       Forgot Password
+                      {/* <span> Password</span> */}
                     </a>
                   </div>
                 </div>
 
-                <button type="submit" className="main_button">
+                <button
+                  type="submit"
+                  className="main_button"
+                  // data-focused={focused.toString()}
+                >
                   <span className="button__text">Log In</span>
                   <div className="button__spinner">
                     <div className="spinner__bounce1"></div>

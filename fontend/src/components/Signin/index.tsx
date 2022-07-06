@@ -25,6 +25,7 @@ const SignIn = () => {
   const toggle = () => {
     setState((state) => !state);
   };
+  // validate
 
   const inittialValue = { username: "", email: "", password: "" };
   const initialError = { username: "", email: "", password: "" };
@@ -52,6 +53,7 @@ const SignIn = () => {
       errorInput = validate("username", formValue.username);
       setformRequied(!formRequied);
     }
+    console.log(!formRequied);
     if (formValue.email === "") {
       errorInput1 = validate("email", formValue.email);
       setformRequied(!formRequied);
@@ -95,6 +97,11 @@ const SignIn = () => {
     return errors;
   };
 
+  // useEffect(() => {
+  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
+  //   }
+  // }, [formErrors]);
+
   return (
     <div className="main">
       <div className="main__header">
@@ -118,6 +125,7 @@ const SignIn = () => {
             <h1 className="form__title">Let's go!</h1>
             <div className="form__main">
               <form onSubmit={handleSubmit}>
+                {/* fullname */}
                 <div className="main__row">
                   <label className="row__label">Full Name</label>
                   <input
@@ -137,6 +145,7 @@ const SignIn = () => {
                     <span>{formError.username}</span>
                   </p>
                 </div>
+                {/* email */}
                 <div className="main__row">
                   <label className="row__label">Email</label>
                   <input
@@ -156,6 +165,7 @@ const SignIn = () => {
                     <span>{formError.email}</span>
                   </p>
                 </div>
+                {/* password */}
                 <div className="main__row">
                   <label className="row__label">Choose Password</label>
                   <input
