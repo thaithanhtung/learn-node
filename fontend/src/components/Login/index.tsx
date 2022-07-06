@@ -1,5 +1,7 @@
 const Login = () => {
-  return <div>new page login</div>;
+  return <div className="tung-test" >
+    test commit data 
+  </div>;
 };
 
 export default Login;
