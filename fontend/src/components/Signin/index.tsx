@@ -97,11 +97,6 @@ const SignIn = () => {
     return errors;
   };
 
-  // useEffect(() => {
-  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
-  //   }
-  // }, [formErrors]);
-
   return (
     <div className="main">
       <div className="main__header">
