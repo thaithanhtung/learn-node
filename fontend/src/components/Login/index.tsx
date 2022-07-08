@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import "./App.css";
-// import "./style.css";
 import "./style.scss";
 import img_email from "./img/email.png";
 import img_password from "./img/password.png";
