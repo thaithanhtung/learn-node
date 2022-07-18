@@ -24,21 +24,7 @@ app.use('/users', userRouter)
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
-  console.log('connected db')
-})
-
-// const client = new MongoClient(process.env.DB_CONNECTION, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   serverApi: ServerApiVersion.v1,
-// })
-// client.connect((err) => {
-//   //   const collection = client.db("test").collection("devices");
-//   //   // perform actions on the collection object
-//   //   client.close();
-//   console.log('test connected ')
-// })
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }).then(()=> console.log("thành công")).catch((error)=>console.log("error",error))
 
 // start
 app.listen(3333)
