@@ -1,37 +1,34 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import "./style.scss";
 import user from "./img/user.png";
 import email from "./img/email.png";
 import password from "./img/password.png";
-import { text } from "stream/consumers";
-import { type } from "os";
 
 const SignIn = () => {
-  type typeOfValue = {
+  type ValueType = {
     username: string;
     email: string;
     password: string;
   };
 
-  type typeOfError = {
+  type ErrorType = {
     username: string;
     email: string;
     password: string;
   };
 
-  const [state, setState] = useState(false);
+  const [statePassword, setStatePassword] = useState(false);
   const toggle = () => {
-    setState((state) => !state);
+    setStatePassword((statePassword) => !statePassword);
   };
   // validate
 
   const inittialValue = { username: "", email: "", password: "" };
   const initialError = { username: "", email: "", password: "" };
 
-  const [formValue, setFormValue] = useState<typeOfValue>(inittialValue);
-  const [formError, setFormErrors] = useState<typeOfError>(initialError);
+  const [formValue, setFormValue] = useState<ValueType>(inittialValue);
+  const [formError, setFormErrors] = useState<ErrorType>(initialError);
   const [formRequied, setformRequied] = useState(false);
 
   const handleChange = (e: any) => {
@@ -45,9 +42,9 @@ const SignIn = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    var errorInput = "";
-    var errorInput1 = "";
-    var errorInput2 = "";
+    let errorInput = "";
+    let errorInputEmail = "";
+    let errorInputPassword = "";
 
     if (formValue.username === "") {
       errorInput = validate("username", formValue.username);
@@ -55,24 +52,24 @@ const SignIn = () => {
     }
     console.log(!formRequied);
     if (formValue.email === "") {
-      errorInput1 = validate("email", formValue.email);
+      errorInputEmail = validate("email", formValue.email);
       setformRequied(!formRequied);
     }
     if (formValue.password === "") {
-      errorInput2 = validate("password", formValue.password);
+      errorInputPassword = validate("password", formValue.password);
       setformRequied(!formRequied);
     }
 
-    var allError = {
+    let allError = {
       username: errorInput,
-      email: errorInput1,
-      password: errorInput2,
+      email: errorInputEmail,
+      password: errorInputPassword,
     };
     setFormErrors({ ...formError, ...allError });
   };
 
   const validate = (name: string, value: string): string => {
-    var errors: string = "";
+    let errors: string = "";
     const regex = /\w+@[a-z]+[.][a-z]*/;
 
     if (name === "username") {
@@ -113,9 +110,9 @@ const SignIn = () => {
         </div>
       </div>
 
-      <div className="main__content">
-        <div className="background"></div>
-        <div className="content">
+      <div className="main__container">
+        <div className="container__background"></div>
+        <div className="container__content">
           <div className="content__form">
             <h1 className="form__title">Let's go!</h1>
             <div className="form__main">
@@ -133,7 +130,7 @@ const SignIn = () => {
                     onChange={handleChange}
                     required={formRequied}
                   ></input>
-                  <div className="row__icon icon ">
+                  <div className="row__icon ">
                     <img src={user} alt="user" />
                   </div>
                   <p className="row--showError">
@@ -153,7 +150,7 @@ const SignIn = () => {
                     onChange={handleChange}
                     required={formRequied}
                   ></input>
-                  <div className="row__icon icon ">
+                  <div className="row__icon ">
                     <img src={email} alt="email" />
                   </div>
                   <p className="row--showError">
@@ -171,13 +168,13 @@ const SignIn = () => {
                     value={formValue.password}
                     onChange={handleChange}
                     required={formRequied}
-                    type={state ? "text" : "password"}
+                    type={statePassword ? "text" : "password"}
                   ></input>
-                  <div className="row__show show">
-                    <a onClick={toggle}>{state ? "Hide" : "Show"}</a>
+                  <div className="row__show">
+                    <a onClick={toggle}>{statePassword ? "Hide" : "Show"}</a>
                   </div>
 
-                  <div className="row__icon icon ">
+                  <div className="row__icon  ">
                     <img src={password} alt="password" />
                   </div>
 
@@ -186,7 +183,7 @@ const SignIn = () => {
                   </p>
                 </div>
 
-                <button type="submit" className="main_button">
+                <button type="submit" className="main__button">
                   <span className="button__text">Play with Clickup</span>
                   <div className="button__spinner">
                     <div className="spinner__bounce1"></div>

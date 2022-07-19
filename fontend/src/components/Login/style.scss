@@ -12,15 +12,14 @@
   display: block;
   position: fixed;
   top: 0;
-  right: 0;
-  left: 0;
+  width: 100%;
 
   .header__logo {
     position: absolute;
     top: 34px;
     left: 34px;
     z-index: 10;
-    .herder__img {
+    .header__img {
       width: 124px;
       height: auto;
     }
@@ -62,7 +61,7 @@
   }
 }
 
-.main__content {
+.main__container {
   position: relative;
   flex-grow: 1;
   width: 100%;
@@ -72,7 +71,7 @@
   padding-bottom: 70px;
   margin-top: 100px;
 }
-.content {
+.container__content {
   overflow: visible;
   position: relative;
 
@@ -122,23 +121,17 @@
         }
         .row__show {
           position: absolute;
+          top: 25px;
           right: 20px;
-
           fill: #b9bec7;
         }
-        .show {
+        .row__show a {
           -webkit-font-smoothing: antialiased;
           font-size: 12px;
           font-weight: 500;
           color: #7b68ee;
           text-decoration: none;
           user-select: none;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-grow: 0;
-          flex-shrink: 0;
         }
         .row__icon {
           position: absolute;
@@ -148,14 +141,8 @@
           height: 20px;
           fill: #b9bec7;
         }
-        .icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-grow: 0;
-          flex-shrink: 0;
-        }
-        .icon img {
+
+        .row__icon img {
           display: block;
           width: 100%;
           height: 100%;
@@ -172,7 +159,7 @@
           border: 1px solid red;
         }
 
-        .main_button {
+        .main__button {
           transition: background-color 0.2s
             cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
           background-color: #7b68ee;
@@ -196,7 +183,7 @@
             color: #fff;
           }
         }
-        .main_button:hover {
+        .main__button:hover {
           background-color: #5f48ea;
         }
 

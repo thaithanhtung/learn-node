@@ -1,10 +1,7 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import "./style.scss";
 import img_email from "./img/email.png";
 import img_password from "./img/password.png";
-import { EntryType } from "perf_hooks";
-import { error } from "console";
 
 type FormErrorsType = {
   email: string;
@@ -34,11 +31,11 @@ const Login = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    var errorInput1 = "";
+    var errorInputEmail = "";
     var errorInput = "";
 
     if (formValues.email === "") {
-      errorInput1 = validate("email", formValues.email);
+      errorInputEmail = validate("email", formValues.email);
       setFormRequied(!formRequied);
     }
     if (formValues.password === "") {
@@ -47,12 +44,11 @@ const Login = () => {
     }
 
     var allError = {
-      email: errorInput1,
+      email: errorInputEmail,
       password: errorInput,
     };
     setFormErrors({ ...formErrors, ...allError });
   };
-  console.log("....formErrors", formErrors);
 
   const validate = (name: string, value: string): string => {
     var errors: string = "";
@@ -82,7 +78,7 @@ const Login = () => {
         <a className="header__logo">
           <img
             src="	https://app-cdn.clickup.com/assets/images/brand/clickup_color-new.svg"
-            className="herder__img"
+            className="header__img"
             alt="ClickUp"
           ></img>
         </a>
@@ -92,9 +88,9 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="main__content">
-        <div className="background"></div>
-        <div className="content">
+      <div className="main__container">
+        <div className="container__background"></div>
+        <div className="container__content">
           <div className="content__form">
             <h1 className="form__title">Welcome back!</h1>
             <div className="form__main">
@@ -112,7 +108,7 @@ const Login = () => {
                     onChange={handleChange}
                     required={formRequied}
                   ></input>
-                  <div className="row__icon icon ">
+                  <div className="row__icon  ">
                     <img src={img_email} alt="email" />
                   </div>
                   {/* validate  */}
@@ -134,20 +130,20 @@ const Login = () => {
                     onChange={handleChange}
                     required={formRequied}
                   ></input>
-                  <div className="row__icon icon ">
+                  <div className="row__icon ">
                     <img src={img_password} alt="password" />
                   </div>
                   <p className="row--showError">
                     <span>{formErrors.password}</span>
                   </p>
-                  <div className="row__show show">
+                  <div className="row__show ">
                     <a id="component-login-forgot" draggable="false">
                       Forgot Password
                     </a>
                   </div>
                 </div>
 
-                <button type="submit" className="main_button">
+                <button type="submit" className="main__button">
                   <span className="button__text">Log In</span>
                   <div className="button__spinner">
                     <div className="spinner__bounce1"></div>
