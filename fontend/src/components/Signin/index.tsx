@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-import "./style.scss";
-import user from "./img/user.png";
-import email from "./img/email.png";
-import password from "./img/password.png";
+import "../styles/SignIn_style.scss";
+
+import SignIn_user from "../Image/SignIn_user.png";
+import SignIn_email from "../Image/SignIn_email.png";
+import SignIn_password from "../Image/SignIn_password.png";
 
 const SignIn = () => {
   type ValueType = {
@@ -19,6 +20,7 @@ const SignIn = () => {
   };
 
   const [statePassword, setStatePassword] = useState(false);
+
   const toggle = () => {
     setStatePassword((statePassword) => !statePassword);
   };
@@ -29,7 +31,10 @@ const SignIn = () => {
 
   const [formValue, setFormValue] = useState<ValueType>(inittialValue);
   const [formError, setFormErrors] = useState<ErrorType>(initialError);
-  const [formRequied, setformRequied] = useState(false);
+
+  const [formRequiedUser, setFormRequiedUser] = useState(false);
+  const [formRequiedEmail, setFormRequiedEmail] = useState(false);
+  const [formRequiedPassword, setFormRequiedPassword] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -48,16 +53,15 @@ const SignIn = () => {
 
     if (formValue.username === "") {
       errorInput = validate("username", formValue.username);
-      setformRequied(!formRequied);
+      setFormRequiedUser(!formRequiedUser);
     }
-    console.log(!formRequied);
     if (formValue.email === "") {
       errorInputEmail = validate("email", formValue.email);
-      setformRequied(!formRequied);
+      setFormRequiedEmail(!formRequiedEmail);
     }
     if (formValue.password === "") {
       errorInputPassword = validate("password", formValue.password);
-      setformRequied(!formRequied);
+      setFormRequiedPassword(!formRequiedPassword);
     }
 
     let allError = {
@@ -128,10 +132,10 @@ const SignIn = () => {
                     pattern="^[A-Za-z0-9]{1,100}$"
                     value={formValue.username}
                     onChange={handleChange}
-                    required={formRequied}
+                    required={formRequiedUser}
                   ></input>
                   <div className="row__icon ">
-                    <img src={user} alt="user" />
+                    <img src={SignIn_user} alt="user" />
                   </div>
                   <p className="row--showError">
                     <span>{formError.username}</span>
@@ -148,10 +152,10 @@ const SignIn = () => {
                     pattern="\w+@[a-z]+[.][a-z]*"
                     value={formValue.email}
                     onChange={handleChange}
-                    required={formRequied}
+                    required={formRequiedEmail}
                   ></input>
                   <div className="row__icon ">
-                    <img src={email} alt="email" />
+                    <img src={SignIn_email} alt="email" />
                   </div>
                   <p className="row--showError">
                     <span>{formError.email}</span>
@@ -167,7 +171,7 @@ const SignIn = () => {
                     pattern="\w{8,100}"
                     value={formValue.password}
                     onChange={handleChange}
-                    required={formRequied}
+                    required={formRequiedPassword}
                     type={statePassword ? "text" : "password"}
                   ></input>
                   <div className="row__show">
@@ -175,7 +179,7 @@ const SignIn = () => {
                   </div>
 
                   <div className="row__icon  ">
-                    <img src={password} alt="password" />
+                    <img src={SignIn_password} alt="password" />
                   </div>
 
                   <p className="row--showError">

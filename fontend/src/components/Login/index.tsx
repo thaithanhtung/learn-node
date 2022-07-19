@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
-import "./style.scss";
-import img_email from "./img/email.png";
-import img_password from "./img/password.png";
+import { useState } from "react";
+
+import "../styles/Login_style.scss";
+
+import Login_email from "../Image/Login_email.png";
+import Login_password from "../Image/Login_password.png";
 
 type FormErrorsType = {
   email: string;
@@ -18,7 +20,8 @@ const Login = () => {
   const [formErrors, setFormErrors] =
     useState<FormErrorsType>(initialValueError);
 
-  const [formRequied, setFormRequied] = useState(false);
+  const [formRequiedEmail, setFormRequiedEmail] = useState(false);
+  const [formRequiedPassword, setFormRequiedPassword] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -36,11 +39,11 @@ const Login = () => {
 
     if (formValues.email === "") {
       errorInputEmail = validate("email", formValues.email);
-      setFormRequied(!formRequied);
+      setFormRequiedEmail(!formRequiedEmail);
     }
     if (formValues.password === "") {
       errorInput = validate("password", formValues.password);
-      setFormRequied(!formRequied);
+      setFormRequiedPassword(!formRequiedPassword);
     }
 
     var allError = {
@@ -106,10 +109,10 @@ const Login = () => {
                     pattern="\w+@[a-z]+[.][a-z]*"
                     value={formValues.email}
                     onChange={handleChange}
-                    required={formRequied}
+                    required={formRequiedEmail}
                   ></input>
                   <div className="row__icon  ">
-                    <img src={img_email} alt="email" />
+                    <img src={Login_email} alt="email" />
                   </div>
                   {/* validate  */}
                   <p className="row--showError">
@@ -128,10 +131,10 @@ const Login = () => {
                     pattern="\w{8,100}"
                     value={formValues.password}
                     onChange={handleChange}
-                    required={formRequied}
+                    required={formRequiedPassword}
                   ></input>
                   <div className="row__icon ">
-                    <img src={img_password} alt="password" />
+                    <img src={Login_password} alt="password" />
                   </div>
                   <p className="row--showError">
                     <span>{formErrors.password}</span>
