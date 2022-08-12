@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import "../styles/SignIn_style.scss";
+import "./SignIn_style.scss";
 
-import SignIn_user from "../Image/SignIn_user.png";
-import SignIn_email from "../Image/SignIn_email.png";
-import SignIn_password from "../Image/SignIn_password.png";
+import SignIn_user from "../../Image/SignIn_user.png";
+import SignIn_email from "../../Image/SignIn_email.png";
+import SignIn_password from "../../Image/SignIn_password.png";
 
 const SignIn = () => {
   type ValueType = {
@@ -26,15 +26,15 @@ const SignIn = () => {
   };
   // validate
 
-  const inittialValue = { username: "", email: "", password: "" };
+  const initialValue = { username: "", email: "", password: "" };
   const initialError = { username: "", email: "", password: "" };
 
-  const [formValue, setFormValue] = useState<ValueType>(inittialValue);
+  const [formValue, setFormValue] = useState<ValueType>(initialValue);
   const [formError, setFormErrors] = useState<ErrorType>(initialError);
 
-  const [formRequiedUser, setFormRequiedUser] = useState(false);
-  const [formRequiedEmail, setFormRequiedEmail] = useState(false);
-  const [formRequiedPassword, setFormRequiedPassword] = useState(false);
+  const [formRequestUser, setFormRequestUser] = useState(false);
+  const [formRequestEmail, setFormRequestEmail] = useState(false);
+  const [formRequestPassword, setFormRequestPassword] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -53,15 +53,15 @@ const SignIn = () => {
 
     if (formValue.username === "") {
       errorInput = validate("username", formValue.username);
-      setFormRequiedUser(!formRequiedUser);
+      setFormRequestUser(!formRequestUser);
     }
     if (formValue.email === "") {
       errorInputEmail = validate("email", formValue.email);
-      setFormRequiedEmail(!formRequiedEmail);
+      setFormRequestEmail(!formRequestEmail);
     }
     if (formValue.password === "") {
       errorInputPassword = validate("password", formValue.password);
-      setFormRequiedPassword(!formRequiedPassword);
+      setFormRequestPassword(!formRequestPassword);
     }
 
     let allError = {
@@ -74,7 +74,7 @@ const SignIn = () => {
 
   const validate = (name: string, value: string): string => {
     let errors: string = "";
-    const regex = /\w+@[a-z]+[.][a-z]*/;
+    const regex = /\w@[a-z]+[.][a-z]/;
 
     if (name === "username") {
       if (!value) {
@@ -101,16 +101,18 @@ const SignIn = () => {
   return (
     <div className="main">
       <div className="main__header">
-        <a className="header__logo">
+        <a className="header__logo" href="#/">
           <img
             src="	https://app-cdn.clickup.com/assets/images/brand/clickup_color-new.svg"
-            className="herder__img"
+            className="logo__img"
             alt="ClickUp"
           ></img>
         </a>
         <div className="header__right">
           <div className="right__text"> Already playing with ClickUp? </div>
-          <a className="right__button">Login</a>
+          <a className="right__button" href="#/">
+            Login
+          </a>
         </div>
       </div>
 
@@ -121,7 +123,7 @@ const SignIn = () => {
             <h1 className="form__title">Let's go!</h1>
             <div className="form__main">
               <form onSubmit={handleSubmit}>
-                {/* fullname */}
+                {/* full name */}
                 <div className="main__row">
                   <label className="row__label">Full Name</label>
                   <input
@@ -132,7 +134,7 @@ const SignIn = () => {
                     pattern="^[A-Za-z0-9]{1,100}$"
                     value={formValue.username}
                     onChange={handleChange}
-                    required={formRequiedUser}
+                    required={formRequestUser}
                   ></input>
                   <div className="row__icon ">
                     <img src={SignIn_user} alt="user" />
@@ -152,7 +154,7 @@ const SignIn = () => {
                     pattern="\w+@[a-z]+[.][a-z]*"
                     value={formValue.email}
                     onChange={handleChange}
-                    required={formRequiedEmail}
+                    required={formRequestEmail}
                   ></input>
                   <div className="row__icon ">
                     <img src={SignIn_email} alt="email" />
@@ -171,11 +173,13 @@ const SignIn = () => {
                     pattern="\w{8,100}"
                     value={formValue.password}
                     onChange={handleChange}
-                    required={formRequiedPassword}
+                    required={formRequestPassword}
                     type={statePassword ? "text" : "password"}
                   ></input>
                   <div className="row__show">
-                    <a onClick={toggle}>{statePassword ? "Hide" : "Show"}</a>
+                    <a onClick={toggle} href="#/">
+                      {statePassword ? "Hide" : "Show"}
+                    </a>
                   </div>
 
                   <div className="row__icon  ">
@@ -197,7 +201,7 @@ const SignIn = () => {
                 </button>
 
                 <div className="main__sso">
-                  <a href="">or login with SSO</a>
+                  <a href="#/">or login with SSO</a>
                 </div>
               </form>
             </div>

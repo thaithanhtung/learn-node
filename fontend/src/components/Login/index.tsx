@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import "../styles/Login_style.scss";
+import "./Login_style.scss";
 
-import Login_email from "../Image/Login_email.png";
-import Login_password from "../Image/Login_password.png";
+import Login_email from "../../Image/Login_email.png";
+import Login_password from "../../Image/Login_password.png";
 
 type FormErrorsType = {
   email: string;
@@ -20,8 +20,8 @@ const Login = () => {
   const [formErrors, setFormErrors] =
     useState<FormErrorsType>(initialValueError);
 
-  const [formRequiedEmail, setFormRequiedEmail] = useState(false);
-  const [formRequiedPassword, setFormRequiedPassword] = useState(false);
+  const [formRequestEmail, setFormRequestEmail] = useState(false);
+  const [formRequestPassword, setFormRequestPassword] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -39,11 +39,11 @@ const Login = () => {
 
     if (formValues.email === "") {
       errorInputEmail = validate("email", formValues.email);
-      setFormRequiedEmail(!formRequiedEmail);
+      setFormRequestEmail(!formRequestEmail);
     }
     if (formValues.password === "") {
       errorInput = validate("password", formValues.password);
-      setFormRequiedPassword(!formRequiedPassword);
+      setFormRequestPassword(!formRequestPassword);
     }
 
     var allError = {
@@ -56,7 +56,7 @@ const Login = () => {
   const validate = (name: string, value: string): string => {
     var errors: string = "";
 
-    const regex = /\w+@[a-z]+[.][a-z]*/;
+    const regex = /\w@[a-z]+[.][a-z]/;
     if (name === "email") {
       if (!value) {
         errors = "Email required!";
@@ -76,27 +76,28 @@ const Login = () => {
   };
 
   return (
-    <div className="main">
-      <div className="main__header">
-        <a className="header__logo">
+    <div className="mainLogin">
+      <div className="mainLogin__headerLogin">
+        <a className="headerLogin__logo" href="#/">
           <img
             src="	https://app-cdn.clickup.com/assets/images/brand/clickup_color-new.svg"
-            className="header__img"
+            className="logo__img"
             alt="ClickUp"
           ></img>
         </a>
-        <div className="header__right">
-          <div className="right__text">Don't have an account?</div>
-          <a className="right__button">Sign up</a>
+        <div className="headerLogin__rightLogin">
+          <div className="rightLogin__text">Don't have an account?</div>
+          <a className="rightLogin__button" href="#/">
+            Sign up
+          </a>
         </div>
       </div>
-
-      <div className="main__container">
-        <div className="container__background"></div>
-        <div className="container__content">
-          <div className="content__form">
-            <h1 className="form__title">Welcome back!</h1>
-            <div className="form__main">
+      <div className="mainLogin__containerLogin">
+        <div className="containerLogin__background"></div>
+        <div className="containerLogin__contentLogin">
+          <div className="contentLogin__formLogin">
+            <h1 className="formLogin__title">Welcome back!</h1>
+            <div className="formLogin__main">
               <form onSubmit={handleSubmit}>
                 {/* Email */}
                 <div className="main__row">
@@ -109,7 +110,7 @@ const Login = () => {
                     pattern="\w+@[a-z]+[.][a-z]*"
                     value={formValues.email}
                     onChange={handleChange}
-                    required={formRequiedEmail}
+                    required={formRequestEmail}
                   ></input>
                   <div className="row__icon  ">
                     <img src={Login_email} alt="email" />
@@ -131,7 +132,7 @@ const Login = () => {
                     pattern="\w{8,100}"
                     value={formValues.password}
                     onChange={handleChange}
-                    required={formRequiedPassword}
+                    required={formRequestPassword}
                   ></input>
                   <div className="row__icon ">
                     <img src={Login_password} alt="password" />
@@ -140,7 +141,7 @@ const Login = () => {
                     <span>{formErrors.password}</span>
                   </p>
                   <div className="row__show ">
-                    <a id="component-login-forgot" draggable="false">
+                    <a id="component-login-forgot" draggable="false" href="#/">
                       Forgot Password
                     </a>
                   </div>
@@ -156,15 +157,15 @@ const Login = () => {
                 </button>
 
                 <div className="main__sso">
-                  <a href="">or login with SSO</a>
+                  <a href="#/">or login with SSO</a>
                 </div>
               </form>
             </div>
           </div>
-          <div className="content__bottom">
+          <div className="contentLogin__bottom">
             <div className="bottom__text">
               Don't have an account?
-              <a data-test="text__link" className="text__link">
+              <a data-test="text__link" className="text__link" href="#/">
                 {" "}
                 Sign up
               </a>
